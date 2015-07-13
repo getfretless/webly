@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 require 'cgi'
+require 'erb'
+
 cgi = CGI.new
 page = 'home'
 page = cgi['page'] unless cgi['page'].empty?
@@ -15,13 +17,13 @@ end
 
 def layout(page_name, &block)
   title = { 'home'  => 'Welcome', 'about' => 'About Us' }
-  puts "<!doctype html><html><head><title>#{title[page_name]}</title></head><body>"
-  puts yield
-  puts '</body></html>'
+  template = File.read 'layout.html.erb'
+  puts ERB.new(template).result(binding)
 end
 
 def render_view(view_name)
-  puts File.read("#{view_name}.html")
+  template = File.read("#{view_name}.html.erb")
+  ERB.new(template).result(binding)
 end
 
 layout page do
