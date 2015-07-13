@@ -13,17 +13,21 @@ else
   greeting = cgi['name']
 end
 
-def render(page_name, &content)
+def layout(page_name, &block)
   title = { 'home'  => 'Welcome', 'about' => 'About Us' }
   puts "<!doctype html><html><head><title>#{title[page_name]}</title></head><body>"
   puts yield
   puts '</body></html>'
 end
 
-render page do
+def render_view(view_name)
+  puts File.read("#{view_name}.html")
+end
+
+layout page do
   if page.downcase == 'about'
-    "Hey, #{greeting}. Let me tell you about us. We are coders!"
+    render_view page
   else
-    "Hello, #{greeting}!"
+    render_view 'index'
   end
 end
