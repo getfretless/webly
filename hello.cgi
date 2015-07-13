@@ -10,12 +10,22 @@ else
   greeting = cgi['name']
 end
 
-
-puts "<html>
-  <head>
-    <title>My first web page</title>
-  </head>
-  <body>
-    Hello, #{greeting}!
-  </body>
-</html>"
+if cgi['page'] == 'about'
+  puts "<html>
+    <head>
+      <title>My first web page</title>
+    </head>
+    <body>
+      Hey, #{greeting}. Let me tell you about us. We are coders!
+    </body>
+  </html>"
+else
+  puts "<html>
+    <head>
+      <title>My first web page</title>
+    </head>
+    <body>
+      Hello, #{greeting}!
+    </body>
+  </html>"
+end
