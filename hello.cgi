@@ -1,8 +1,12 @@
 #!/usr/bin/env ruby
 require 'cgi'
 cgi = CGI.new
-page = 'Welcome'
+page = 'home'
 page = cgi['page'] unless cgi['page'].empty?
+title = {
+  'home'  => 'Welcome',
+  'about' => 'About Us'
+}
 
 puts cgi.header
 
@@ -15,13 +19,13 @@ end
 
 html_head = "<html>
   <head>
-    <title>#{page}</title>
+    <title>Webly: #{title[page.downcase]}</title>
   </head>
   <body>"
 
 html_foot = "</body></html>"
 
-if page == 'about'
+if page.downcase == 'about'
   puts "#{html_head}Hey, #{greeting}. Let me tell you about us. We are coders!#{html_foot}"
 else
   puts "#{html_head}Hello, #{greeting}!#{html_foot}"
