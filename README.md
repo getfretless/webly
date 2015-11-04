@@ -1,6 +1,8 @@
-### ElevenHTTP
+### Webly
 
-Let's talk a little about how a web page is served
+Webly is a very simple application server for rendering dynamic pages from ERB templates.
+
+Let's talk a little about how a web page is served.
 
 At its most basic form, it is a just a pipe of text that is being sent by the server, and interpreted by your web browser.
 
